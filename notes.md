@@ -43,6 +43,10 @@
 
 `type class:` a type class is a type sytem construct that supports parametric polymorphism.
 
+`type class:` a type class is an interface that defines some behavior. More specifically, a type class specifies a bunch of functions, and when we decide to make a type an instance of a type class, we define what those functions mean for that type.
+
+`type class:` a type class is a programming technique that lets you add new behavior to closed data types without using inheritence, and without having to access the original sorce code of those types.
+
 `parametric polymorphism:` in programming languages and type theory parametric polymorphism is a way to make a language more expressive, whilst still maintaining full static type safety. Using parametic polymorphism, a function or datatype can be written generically such that it can handle values identically without depending on their type. Such functions and datatypes are called generic functions and generic datatypes, and form the basis of generic programming
 
 `polymorphism:` polymorphism is the provision of asingle interface, to entities of different types, or the use of a single symbol to represent multiple types. there are multiple classes of polymorphism, namely `ad hoc polymorphism`, `parametric polymophism` and `subtyping`
@@ -83,6 +87,8 @@
 
 `monad:` a monad is a design pattern, that allows structuring programs generically while automating away boilerplate code needed by the programming logic. Monads achive this by providing their own data type which represents a particular form of computation, along with one procedure to wrap values of any basic type with the monad, yielding a monadic value and another to compose functions that output monadic values called monadic funcitonss
 
+## scala specific notes
+
 # what the hell is a type class??
 
 > https://typelevel.org/cats/typeclasses.html
@@ -96,3 +102,9 @@
 > https://www.scala-lang.org/blog/2016/12/07/implicit-function-types.html#implicit-functions
 
 > https://docs.scala-lang.org/overviews/scala-book/functional-error-handling.html
+
+### alvin alexanders notes, particually brilliant
+
+> https://alvinalexander.com/scala/fp-book/type-classes-101-introduction
+
+## scala specific notes
