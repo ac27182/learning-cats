@@ -51,8 +51,14 @@ object Part1 extends App {
 
   val json0 = Json.toJson(person)
 
-  // import JsonWriterInstances.stringWriter
   import JsonSyntax.JsonWriterOps
   val json1 = person.toJson
   println(json1)
+}
+
+object TypeClasses extends App {
+  trait MyTypeClass {
+    // def toString() = ???
+  }
+
 }
