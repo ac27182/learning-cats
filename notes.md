@@ -166,6 +166,54 @@ printf 'hello my name is alex' | tr ' ' '\n' >> .gitignore
 
 - imap generates a a new type class instance by a pair of bidirectional transformers
 
+- informally, a monad is anything with a constructor and a flatmap operation
+
+- `a monad is a mechanism for sequencing computations`
+
+- every monad is also a functor
+
+- Monad
+
+  - pure: A => F[A]
+  - flatMap: (F[A], A => F[B]) => F[B]
+
+- monad laws
+
+  - left identity
+  - right identity
+  - associativity
+
+- either is generally used to implememnt fail-fast error handling.
+
+- cats.eval is a monad that allows us to abstract over different models of evaluation, eg eager, lazy, memoized
+
+- Eager computations happen immediately
+
+- Lazy computations happen on access
+
+- memoized computations are run once on firsed access, and are cached for subsequent calls
+
+- why is Eval useful?
+
+- eval is useful to enforce stack safety, however trampolining is not free. remember
+
+- `trampolining:`
+
+- a common use of the writer monad is recording sequences of steps in multithreaded computations, where standart imperitive logging techniques can result in interleaved messages form different contexts
+
+- dont fully understand the point in the writer monad
+
+- NB log writer example
+
+- dependency injection patterns in scala
+
+- the `khleisli arrow`
+
+- the power of the state monad comes from combining instances
+  the map and flatMap methods thread state from one instance to another
+
+- page 143
+
 # list of useful functions
 
 - map
@@ -173,3 +221,7 @@ printf 'hello my name is alex' | tr ' ' '\n' >> .gitignore
 - lift
 - contramap
 - imap
+- flatmap
+- bimap
+- mapBoth
+-
