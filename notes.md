@@ -142,3 +142,34 @@ printf 'hello my name is alex' | tr ' ' '\n' >> .gitignore
 - big data applications like spark and hadoop distribute data analysis over man machines, giving fault tollerant scalabiltiy. implicing that each machine will return results over a portion of the data
 
 - `eventual concistency:`
+
+- `functors:` informally, a functor is anything with a map method`
+
+- we need to change the way we think, we should thing of a map as changing all the values in something, in one go
+
+- we need to think of map as a way of sequencing computations on values
+
+- NB futures are not referentially transparent, in adition they do not give us the option to choose when to begin the computation
+
+- `functor:` a functor adheres to the follwoing laws
+
+  - identity
+  - functional composition
+
+- in some programs we need to enable higher kinded types
+
+- contramap, represents preapending an operation to a chain
+
+- map generates a new type class instance, by appending a function to a chain
+
+- contramap generates a new type class instance by preapending a function to a chain
+
+- imap generates a a new type class instance by a pair of bidirectional transformers
+
+# list of useful functions
+
+- map
+- fold
+- lift
+- contramap
+- imap
