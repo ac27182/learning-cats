@@ -1,61 +1,156 @@
 package com.github.ac27182
 
+import java.{util => ju}
+
 object Module1 {
+  object Section4 {
 
-  sealed trait Json
-  final case class JsonObject(get: Map[String, Json]) extends Json
-  final case class JsonString(get: String)            extends Json
-  final case class JsonNumber(get: Double)            extends Json
-  case object JsNull                                  extends Json
-  object Json {
-    def toJson[A](value: A)(implicit w: JsonWriter[A]): Json =
-      w.write((value))
-  }
+    import cats.Show
+    // without typeclass instances we cannot use the apply method, so we need to import some
+    import cats.instances.int._
+    import cats.instances.string._
 
-  // here json writer is our type class
-  trait JsonWriter[A] {
-    def write(value: A): Json
-  }
+    val showInt    = Show.apply[Int]
+    val showString = Show.apply[String]
 
-  final case class Person(name: String, email: String)
-  final case class Animal(name: String, email: String)
+    // we can make show easier to use by importing the interface syntax from cats.syntax.show
+    import cats.syntax.show._
 
-  object JsonWriterInstances {
-    implicit val stringWriter: JsonWriter[String] =
-      new JsonWriter[String] {
-        def write(value: String): Json =
-          JsonString(value)
-      }
-  }
-  object JsonSyntax {
-    implicit class JsonWriterOps[A](value: A) {
-      def toJson(implicit w: JsonWriter[A]): Json =
-        w.write(value)
+    val shownInt: String =
+      123.show
+
+    val shownString: String =
+      "abc".show
+
+    // imports every typeclass
+    import cats._
+
+    // imports all typeclass isntances
+    import cats.instances.all._
+
+    // imports all synatx in one go
+    import cats.syntax.all._
+
+    // imports all of the standart typeclass intstances AND all of the syntax
+    import cats.implicits._
+
+    // custom instances
+
+    import java.util.Date
+    implicit val dateShow: Show[Date] = new Show[Date] {
+      def show(t: Date): String = s"> s${t} <"
     }
-  }
-
-  implicit val personWriter: JsonWriter[Person] = {
-    new JsonWriter[Person] {
-      def write(value: Person): Json =
-        JsonObject(
-          Map(
-            "name"  -> JsonString(value.name),
-            "email" -> JsonString(value.email)
-          )
-        )
+    implicit class DateShowSyntax(d: Date) {
+      def show = dateShow.show(d)
     }
+
+    val e0 = new Date()
+    val e1 = e0.show
+
+    implicit val dateShow0: Show[Date] = Show.show(date => s"> s${date} <")
   }
-  val person =
-    Person("alex", "a.cameron177@gmail.com")
 
-  val animal =
-    Animal("john", "bigjonny69@aol.com")
+  // using the Eq
+  object Section2 {
+    // Eq is use for type safe equality in scala
 
-  val json0 = Json.toJson(person)
+    import cats.Eq
+    import cats.instances.int._
+    val eqInt = Eq[Int]
 
-  import JsonSyntax.JsonWriterOps
-  val json1 = person.toJson
-  println(json1)
+    val e0: Boolean =
+      eqInt.eqv(10, 100)
+
+    // with thow a compile error
+    // val e1: Boolean =
+    //   eqInt.eqv(10, 10L)
+
+    import cats.syntax.eq._
+    val e1: Boolean =
+      1 === 0
+
+    val e2: Boolean =
+      10 =!= 100
+
+    import cats.instances.int._
+    import cats.instances.option._
+
+    // will throw a compile/runtime error, we are comparing some not option
+    // val e3 =
+    //   Some(1) === None
+
+    val e3 =
+      (Some(1): Option[Int]) === (None: Option[Int])
+
+    // or equivilently
+    val e4 =
+      Option(1) === Option.empty[Int]
+
+    import cats.syntax.option._
+    val e5 =
+      1.some === none[Int]
+
+    // comparing custom types
+    // this is useful for testing
+
+    import java.util.Date
+    import cats.instances.long._
+
+    implicit val dateEq: Eq[Date] =
+      Eq.instance[Date]((date1, date2) => date1.getTime === date2.getTime)
+
+    val t0 = new Date()
+    val t1 = new Date()
+
+    val e6 = t0 === t1
+    val e7 = t0 =!= t1
+
+    // exercise
+    final case class Cat(name: String, age: Int, color: String)
+
+    val cat00 = Cat("alan", 38, "black")
+    val cat11 = Cat("steve", 69, "red")
+
+    import cats.instances.string._
+    implicit val catEq: Eq[Cat] =
+      Eq.instance[Cat]((cat0, cat1) => {
+        val Cat(n0, a0, c0) = cat0
+        val Cat(n1, a1, c1) = cat1
+
+        n0 === n1 && // comparing name
+        a0 === a1 && // comparing age
+        c0 === c1    // comparing color
+      })
+
+    val e8 = cat00 === cat11
+
+  }
+
+  object Section6 {
+    // controlling instance selection
+
+    trait F[+A] // the + means covariant
+    // F[A] <: F[B] <=> B <: A
+    trait List[+A]
+    trait Option[+A]
+
+    sealed trait Shape
+    case class Circle(radius: Double) extends Shape
+    val circles: List[Circle] = ???
+    val shapes: List[Shape]   = circles
+
+    trait G[-A] // the - means contravariance
+    // G[B] <: G[A] <=> A <: B
+
+    val shape: Shape   = ???
+    val circle: Circle = ???
+    // val shapeWriter: JsonWriter[Shape] = ???
+
+    trait H[A] // means invariance
+    // F[A] !<: F[B] && F[B] !<: F[A]
+
+  }
+
 }
 
 object TypeClasses extends App {

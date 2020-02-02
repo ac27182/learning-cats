@@ -114,3 +114,12 @@
 ```sh
 printf 'hello my name is alex' | tr ' ' '\n' >> .gitignore
 ```
+
+- eq is used for type safe equality in scala
+- could be important when unit testing in scala check
+
+`variance:` variance relates to subtypes
+
+`(co / contra) variance:` these annotations arise when working with type constructors
+
+- chapter 1 covers invariance, covariance and contravariance
