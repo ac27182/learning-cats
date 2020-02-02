@@ -108,3 +108,9 @@
 > https://alvinalexander.com/scala/fp-book/type-classes-101-introduction
 
 ## scala specific notes
+
+# underscore notes
+
+```sh
+printf 'hello my name is alex' | tr ' ' '\n' >> .gitignore
+```

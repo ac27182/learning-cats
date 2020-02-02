@@ -1,10 +1,12 @@
-object Part1 extends App {
+package com.github.ac27182
+
+object Module1 {
 
   sealed trait Json
   final case class JsonObject(get: Map[String, Json]) extends Json
-  final case class JsonString(get: String) extends Json
-  final case class JsonNumber(get: Double) extends Json
-  case object JsNull extends Json
+  final case class JsonString(get: String)            extends Json
+  final case class JsonNumber(get: Double)            extends Json
+  case object JsNull                                  extends Json
   object Json {
     def toJson[A](value: A)(implicit w: JsonWriter[A]): Json =
       w.write((value))
@@ -37,7 +39,7 @@ object Part1 extends App {
       def write(value: Person): Json =
         JsonObject(
           Map(
-            "name" -> JsonString(value.name),
+            "name"  -> JsonString(value.name),
             "email" -> JsonString(value.email)
           )
         )
@@ -58,8 +60,8 @@ object Part1 extends App {
 
 object TypeClasses extends App {
   sealed trait Animal
-  final case class Dog(name: String) extends Animal
-  final case class Cat(name: String) extends Animal
+  final case class Dog(name: String)  extends Animal
+  final case class Cat(name: String)  extends Animal
   final case class Bird(name: String) extends Animal
 
   // step one: define the type class
@@ -127,12 +129,12 @@ object TypeClasses extends App {
       }
   }
   final case class Saturday() extends Weekday
-  final case class Sunday() extends Weekday
-  final case object Monday extends Weekday
-  final case object Tuesday extends Weekday
+  final case class Sunday()   extends Weekday
+  final case object Monday    extends Weekday
+  final case object Tuesday   extends Weekday
   final case object Wednesday extends Weekday
-  final case object Thursday extends Weekday
-  final case object Friday extends Weekday
+  final case object Thursday  extends Weekday
+  final case object Friday    extends Weekday
 
   // type class
   trait WeekendLogic[A] {
