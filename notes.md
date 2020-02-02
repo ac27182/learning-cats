@@ -123,3 +123,22 @@ printf 'hello my name is alex' | tr ' ' '\n' >> .gitignore
 `(co / contra) variance:` these annotations arise when working with type constructors
 
 - chapter 1 covers invariance, covariance and contravariance
+
+- `monoid:` a monoid for type A is
+
+  - an operation combine with type (A,A) => A
+  - an element empty of type A
+
+- `semigroup:` a semigroup for type A is
+
+  - an operation combine with type (A,A) => A
+
+- NB the cats kernal is a subproject of cats, providing a small set of typeclasses for libraris that dont require the full cats toolbox
+
+```scala
+|+| is the combine operator
+```
+
+- big data applications like spark and hadoop distribute data analysis over man machines, giving fault tollerant scalabiltiy. implicing that each machine will return results over a portion of the data
+
+- `eventual concistency:`
