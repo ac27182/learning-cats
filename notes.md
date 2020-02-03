@@ -271,6 +271,14 @@ printf 'hello my name is alex' | tr ' ' '\n' >> .gitignore
 
 - traverse is one of the msot powerful typeclasses
 
+- testing asynchronous code
+
+- pg 199
+
+- 45 pages to go
+
+- pg 244
+
 # list of useful functions
 
 - map
