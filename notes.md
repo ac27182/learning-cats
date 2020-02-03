@@ -257,6 +257,20 @@ printf 'hello my name is alex' | tr ' ' '\n' >> .gitignore
 
 - "the hierachy of sequencing type classes"
 
+- foldable abstracts foldleft and foldright
+
+- traverse is a high level abstraction that uses applicatives to iterate with less pain than folding
+
+- subtraction is not associative
+
+- doldmap: maps a user supplied function over a sequence and combines the results using a monoid
+
+- combineAll: combines all elements in the sequenc using their monoid
+
+- the traverse type class is a higher level tool that leverages applicatives to provide a more convenient more lawful pattern for iteration
+
+- traverse is one of the msot powerful typeclasses
+
 # list of useful functions
 
 - map
@@ -272,3 +286,5 @@ printf 'hello my name is alex' | tr ' ' '\n' >> .gitignore
 - product
 - ap
 - pure
+- traverse
+- sequence
