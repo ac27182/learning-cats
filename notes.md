@@ -212,7 +212,24 @@ printf 'hello my name is alex' | tr ' ' '\n' >> .gitignore
 - the power of the state monad comes from combining instances
   the map and flatMap methods thread state from one instance to another
 
-- page 143
+- cats provides transformers for many monads, all of which suffixed with T
+
+- EitherT, OptionT etc...
+
+- each monad transformer is a data type defined in cats.data
+
+- things to understand about monad transformers
+
+  - the availible transformer classes
+  - how to build stacks of monads using transformers
+  - how to construct instances of a monad stack
+  - how to pull apart a stack to access the wrapped monads
+
+- ReaderT is a type alias for the kleisli arrow
+
+- kind projector, enhances scalas type syntax to make it easier to define partiallly applied type constuctors (the question mark in your type constuctors)
+
+- pg 153
 
 # list of useful functions
 
@@ -224,4 +241,4 @@ printf 'hello my name is alex' | tr ' ' '\n' >> .gitignore
 - flatmap
 - bimap
 - mapBoth
--
+- swap
