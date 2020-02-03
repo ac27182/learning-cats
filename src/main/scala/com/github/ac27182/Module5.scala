@@ -94,5 +94,33 @@ object Module5 {
     type FutureEither0[A] = EitherT[Future, HttpError, A]
 
     // this pattern tends to break down in larger code bases
+
+    import cats.data.Writer
+    type Logged[A] = Writer[List[String], A]
+
+    def parseNumber(str: String): Logged[Option[Int]] =
+      util.Try(str.toInt).toOption match {
+        case Some(value) => Writer(List("read"), Some(value))
+        case None        => Writer(List("failed"), None)
+      }
+
+    def addAll(a: String, b: String, c: String): Logged[Option[Int]] = {
+      import cats.data.OptionT
+      import cats.implicits._
+
+      val result = for {
+        a <- OptionT(parseNumber(a))
+        b <- OptionT(parseNumber(b))
+        c <- OptionT(parseNumber(c))
+      } yield a + b + c
+
+      result.value
+    }
+
+    val result1 = addAll("1", "2", "3")
+    val result2 = addAll("1", "a", "3")
+
+    // EitherT[Option, String, A] is eqivilent to
+    // Option[Either[String, A]]
   }
 }

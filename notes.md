@@ -231,6 +231,32 @@ printf 'hello my name is alex' | tr ' ' '\n' >> .gitignore
 
 - pg 153
 
+- `monad transformers` eliminate the need for nested for comprehensions and pattern matching when dealing with stacks of nested monads
+
+- monad transformers are written from the inside out
+
+- Semigroupal
+
+- Applicative
+
+- "functors and monads are useful, however the cannot represent certain types of program flow"
+
+- fail fast monad: Either
+
+- monadic comprehensions only allow us to run taks in sequence
+
+- map and flatmap cant capture what we want because they make the assumption the each computation is dependent of the previous one
+
+- `semigroupal` encompasses the notion of composing pairs of contexts. Cats provides cats.syntax.apply module that makes use of semigroupal and functor to allow users to sequence functions with multiple arguments
+
+- `applicative` extends semigroupal and functor. it provides a way of applying functions to parameters within a context. Applicative is the source of the pure method.
+
+- create then flatmap pattern
+
+- conor mcbride, ross pattern
+
+- "the hierachy of sequencing type classes"
+
 # list of useful functions
 
 - map
@@ -242,3 +268,7 @@ printf 'hello my name is alex' | tr ' ' '\n' >> .gitignore
 - bimap
 - mapBoth
 - swap
+- zip
+- product
+- ap
+- pure
