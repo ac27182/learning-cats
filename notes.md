@@ -273,11 +273,25 @@ printf 'hello my name is alex' | tr ' ' '\n' >> .gitignore
 
 - testing asynchronous code
 
-- pg 199
+- fold = reduce
 
-- 45 pages to go
+- the map reduce programming model
 
-- pg 244
+- we can parallelize map, because there are no dependencies between the transformations applied to different elemens
+
+- if we can guarentee the associativity of our operation, we can arbitrarily distribute work between our nodes provided the subsequences at every node stay in the same order as the initial dataset
+
+- `Runtime.getRuntime.availableProcessors`
+- bloom filter
+- hyperloglog algorithm
+- stochastic gradient descent
+- the t-digest
+
+* pg 199
+
+* 45 pages to go
+
+* pg 244
 
 # list of useful functions
 
