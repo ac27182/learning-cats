@@ -282,16 +282,26 @@ printf 'hello my name is alex' | tr ' ' '\n' >> .gitignore
 - if we can guarentee the associativity of our operation, we can arbitrarily distribute work between our nodes provided the subsequences at every node stay in the same order as the initial dataset
 
 - `Runtime.getRuntime.availableProcessors`
+
 - bloom filter
+
 - hyperloglog algorithm
+
 - stochastic gradient descent
-- the t-digest
 
-* pg 199
+* the t-digest
 
-* 45 pages to go
+* commutative replicated data sets
 
-* pg 244
+- consistency
+
+- Gcounter
+
+- pg 199
+
+- 45 pages to go
+
+- pg 244
 
 # list of useful functions
 
